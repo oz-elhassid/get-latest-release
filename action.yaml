@@ -16,6 +16,12 @@ inputs:
   excludes:
     description: 'Types of releases to exclude (e.g. pre-release)'
     required: false
+  includes:
+    description: 'A substring of the release name'
+    required: false
+  token:
+    description: 'Github authentication token to use'
+    required: false
 outputs:
   release:
     description: 'Latest release'

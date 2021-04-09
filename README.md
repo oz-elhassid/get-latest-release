@@ -24,6 +24,8 @@ repository | The repository name in full | pozetroninc/github-action-get-latest-
 Name | Description | Example
 --- | --- | ---
 excludes | Exclude draft or pre-release versions. | "prerelease, draft"
+includes | A substring of the release name to look for. | "foobar"
+token    | Github authentication token to use.    | "ghp_r900DUmu9Q3elmwWfvqUHpN9F5adxp1r99VF"
 
 **Outputs**
 
