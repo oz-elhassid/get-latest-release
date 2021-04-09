@@ -42,15 +42,15 @@ async function run() {
             core.setOutput('target_commitish', releases[0].target_commitish)
             core.setOutput('name', releases[0].name)
             core.setOutput('body', releases[0].body)
-            core.setOutput('draft', releases[0].draft)
-            core.setOutput('prerelease', releases[0].prerelease)
+            core.setOutput('draft', releases[0].draft.toString())
+            core.setOutput('prerelease', releases[0].prerelease.toString())
             core.setOutput('author_id', releases[0].author.id.toString())
             core.setOutput('author_node_id', releases[0].author.node_id)
             core.setOutput('author_url', releases[0].author.url)
             core.setOutput('author_login', releases[0].author.login)
             core.setOutput('author_html_url', releases[0].author.html_url)
             core.setOutput('author_type', releases[0].author.type)
-            core.setOutput('author_site_admin', releases[0].author.site_admin)
+            core.setOutput('author_site_admin', releases[0].author.site_admin.toString())
             core.info("Latest release tag: " + releases[0].tag_name)
         } else {
             core.setFailed("No valid releases");
