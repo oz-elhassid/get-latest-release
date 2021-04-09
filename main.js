@@ -28,11 +28,30 @@ async function run() {
             releases = releases.filter(x => x.draft != true);
         }
         if (name_includes) {
-            releases = releases.filter(x => x.name.includes(name_includes));
+            releases = releases.filter(x => x.tag_name.includes(name_includes));
         }
         if (releases.length) {
-            core.setOutput('release', releases[0].name);
-            core.info("Latest release: " + releases[0].name)
+            core.setOutput('release', releases[0].tag_name);
+            core.setOutput('url', releases[0].url)
+            core.setOutput('assets_url', releases[0].assets_url)
+            core.setOutput('upload_url', releases[0].upload_url)
+            core.setOutput('html_url', releases[0].html_url)
+            core.setOutput('id', releases[0].id.toString())
+            core.setOutput('node_id', releases[0].node_id)
+            core.setOutput('tag_name', releases[0].tag_name)
+            core.setOutput('target_commitish', releases[0].target_commitish)
+            core.setOutput('name', releases[0].name)
+            core.setOutput('body', releases[0].body)
+            core.setOutput('draft', releases[0].draft)
+            core.setOutput('prerelease', releases[0].prerelease)
+            core.setOutput('author_id', releases[0].author.id.toString())
+            core.setOutput('author_node_id', releases[0].author.node_id)
+            core.setOutput('author_url', releases[0].author.url)
+            core.setOutput('author_login', releases[0].author.login)
+            core.setOutput('author_html_url', releases[0].author.html_url)
+            core.setOutput('author_type', releases[0].author.type)
+            core.setOutput('author_site_admin', releases[0].author.site_admin)
+            core.info("Latest release tag: " + releases[0].tag_name)
         } else {
             core.setFailed("No valid releases");
         }
