@@ -23,15 +23,36 @@ repository | The repository name in full | pozetroninc/github-action-get-latest-
 **Additional Inputs (Optional)**
 Name | Description | Example
 --- | --- | ---
-excludes | Exclude draft or pre-release versions. | "prerelease, draft"
-includes | A substring of the release name to look for. | "foobar"
-token    | Github authentication token to use.    | "ghp_r900DUmu9Q3elmwWfvqUHpN9F5adxp1r99VF"
+token | Github authentication token to use. | "ghp_r900DUmu9Q3elmwWfvqUHpN9F5adxp1r99VF" or a secret
+and_filters | Return a release that matches all the filters in the list. | "prerelease: false, tag_name: 5, name: dev"
+
+NOTE: The 'and_filters' are and'ed together (duh...).
+</br>
+NOTE2: The filtered release will contain (rather than match) all the filters.
+</br>
+i.e. filtering "tag_name: 5" might return a release with tag_name "v5.0.4-dev-39" as it contains '5'
 
 **Outputs**
 
-Name | Description | Example
---- | --- | ---
-release | The latest release version tag | v0.3.0
+- `url` The HTTP URL for this release
+- `assets_url`: The REST API HTTP URL for this release's assets
+- `upload_url`: The REST API HTTP URL for uploading to this release
+- `html_url`: The REST API HTTP URL for this release
+- `id`: The release id
+- `node_id`: The unique identifier for accessing this release in the GraphQL API
+- `tag_name`: The name of the release's Git tag
+- `target_commitish`: ''
+- `name`: The title of the release
+- `body`: The description of the release
+- `draft`: Whether or not the release is a draft
+- `prerelease`: Whether or not the release is a prerelease
+- `author_id`: The author id
+- `author_node_id`: The unique identifier for accessing this release's author in the GraphQL API
+- `author_url`: The REST API HTTP URL for this release's author
+- `author_login`: The username used to login.
+- `author_html_url`: The HTTP URL for this release's author
+- `author_type`: ''
+- `author_site_admin`: Whether or not this user is a site administrator
 
 Usage Example
 =============
