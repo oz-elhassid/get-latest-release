@@ -22,7 +22,8 @@ async function run() {
         releases = releases.data;
         and_filters.forEach(element => {
             let [key, value] = element.split(":").map(x => x.trim());
-            releases = releases.filter(x => x[key].toString().includes(value));
+            if (key)
+                releases = releases.filter(x => x[key].toString().includes(value));
         });
         if (releases.length) {
             core.setOutput('url', releases[0].url);
