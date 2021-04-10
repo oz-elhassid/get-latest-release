@@ -14,11 +14,11 @@ async function run() {
         if (repository) {
             [owner, repo] = repository.split("/");
         }
-        let releases  = await octokit.repos.listReleases({
+        let releases = await octokit.repos.listReleases({
             owner: owner,
             repo: repo,
             per_page: 100,
-            });
+        });
         releases = releases.data;
         and_filters.forEach(element => {
             let [key, value] = element.split(":").map(x => x.trim());

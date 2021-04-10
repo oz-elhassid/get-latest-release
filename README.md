@@ -66,13 +66,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: keydb
-        uses: pozetroninc/github-action-get-latest-release@master
+        uses: oz-elhassid/get-latest-release@master
         with:
           owner: JohnSully
           repo: KeyDB
-          excludes: prerelease, draft
+          and_filters: "prerelease: false, tag_name: 5, name: dev"
+          token: ${{ secrets.CLONE_TOKEN }}
       - id: timeseries
-        uses: pozetroninc/github-action-get-latest-release@master
+        uses: oz-elhassid/get-latest-release@master
         with:
           repository: RedisTimeSeries/RedisTimeSeries
       - uses: actions/checkout@v2
@@ -82,8 +83,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: pozetroninc/keydb-timeseries
           dockerfile: timeseries.dockerfile
-          build_args: KEY_DB_VERSION=${{ steps.keydb.outputs.release }}, REDIS_TIME_SERIES_VERSION=${{ steps.timeseries.outputs.release }}
-          tags: latest, ${{ steps.keydb.outputs.release }}_${{ steps.timeseries.outputs.release }}
+          build_args: KEY_DB_VERSION=${{ steps.keydb.outputs.tag_name }}, REDIS_TIME_SERIES_VERSION=${{ steps.timeseries.outputs.tag_name }}
+          tags: latest, ${{ steps.keydb.outputs.tag_name }}_${{ steps.timeseries.outputs.tag_name }}
 
 ```
 
