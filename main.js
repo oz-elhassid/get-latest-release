@@ -2,8 +2,8 @@ const core = require('@actions/core');
 const { Octokit } = require("@octokit/rest");
 
 const repository = core.getInput('repository');
-const owner = core.getInput('owner');
-const repo = core.getInput('repo');
+let owner = core.getInput('owner');
+let repo = core.getInput('repo');
 const and_filters = core.getInput('and_filters').trim().split(",").map(x => x.trim());
 const token = core.getInput('token');
 
