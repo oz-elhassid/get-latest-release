@@ -58,7 +58,6 @@ async function run() {
             core.setOutput('author_html_url', releases[0].author.html_url);
             core.setOutput('author_type', releases[0].author.type);
             core.setOutput('author_site_admin', releases[0].author.site_admin.toString());
-            core.setOutput('release_url', releases[0].html_url + '/releases/tag/' + releases[0].name);
             core.info("Latest release tag: " + releases[0].tag_name);
         } else {
             core.setFailed("No valid releases");
