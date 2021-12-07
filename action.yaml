@@ -54,6 +54,8 @@ outputs:
     description: ''
   author_site_admin:
     description: Whether or not this user is a site administrator.
+  release_url:
+    description: The url for the release page
 runs:
   using: 'node12'
   main: 'main.js'
