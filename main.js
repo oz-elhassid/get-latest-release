@@ -21,21 +21,23 @@ async function run() {
             per_page: 100,
         });
         releases = releases.data;
-        and_filters.forEach(element => {
-            let [key, value] = element.split(":").map(x => x.trim());
-            if (key)
-                releases = releases.filter(x => x[key].toString().includes(value));
-        });
-        regex_filters.forEach(element => {
-            let [key, value] = element.split(":").map(x => x.trim());
-            if (key) {
-                if (value[0] != '/') core.setFailed('invalid regex');
-                const i = value.lastIndexOf('/');
-                if (i <= 0) core.setFailed('invalid regex');
-                const regex = new RegExp(value.slice(1, i), value.slice(i+1));
-                releases = releases.filter(x => regex.test(x[key].toString()));
-            }
-        });
+        if (and_filters.length)
+            and_filters.forEach(element => {
+                let [key, value] = element.split(":").map(x => x.trim());
+                if (key)
+                    releases = releases.filter(x => x[key].toString().includes(value));
+            });
+        if (regex_filters.length)
+            regex_filters.forEach(element => {
+                let [key, value] = element.split(":").map(x => x.trim());
+                if (key) {
+                    if (value[0] != '/') core.setFailed('invalid regex');
+                    const i = value.lastIndexOf('/');
+                    if (i <= 0) core.setFailed('invalid regex');
+                    const regex = new RegExp(value.slice(1, i), value.slice(i+1));
+                    releases = releases.filter(x => regex.test(x[key].toString()));
+                }
+            });
         if (releases.length) {
             core.setOutput('url', releases[0].url);
             core.setOutput('assets_url', releases[0].assets_url);
