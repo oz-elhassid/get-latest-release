@@ -28,8 +28,13 @@ async function run() {
         });
         regex_filters.forEach(element => {
             let [key, value] = element.split(":").map(x => x.trim());
-            if (key)
-                releases = releases.filter(x => value.test(x[key].toString()));
+            if (key) {
+                if (value[0] != '/') core.setFailed('invalid regex');
+                const i = value.lastIndexOf('/');
+                if (i <= 0) core.setFailed('invalid regex');
+                const regex = new RegExp(value.slice(1, i), value.slice(i+1));
+                releases = releases.filter(x => regex.test(x[key].toString()));
+            }
         });
         if (releases.length) {
             core.setOutput('url', releases[0].url);
