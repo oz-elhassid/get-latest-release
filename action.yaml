@@ -19,6 +19,9 @@ inputs:
   token:
     description: 'Github authentication token to use'
     required: false
+  regex_filters:
+    description: 'A list of filters where the values are regex'
+    required: false
 outputs:
   url: 
     description: The HTTP URL for this release
