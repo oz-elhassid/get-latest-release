@@ -6,7 +6,7 @@ let owner = core.getInput('owner');
 let repo = core.getInput('repo');
 const and_filters = core.getInput('and_filters').trim().split(",").map(x => x.trim());
 const token = core.getInput('token');
-const regex_filters = core.getInput('regex_filters');
+const regex_filters = core.getInput('regex_filters').trim().split(",").map(x => x.trim());
 
 const octokit = (token ? new Octokit({ auth: token }) : new Octokit());
 
