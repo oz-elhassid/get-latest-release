@@ -25,6 +25,7 @@ Name | Description | Example
 --- | --- | ---
 token | Github authentication token to use. | "ghp_r900DUmu9Q3elmwWfvqUHpN9F5adxp1r99VF" or a secret
 and_filters | Return a release that matches all the filters in the list. | "prerelease: false, tag_name: 5, name: dev"
+regex_filters | Return a release that matches all the regex filters in the list. | 'tag_name: /^v[0-9]+\.[0-9]+\.[0-9]+-dev-[0-9]+$/'
 
 NOTE: The 'and_filters' are and'ed together (duh...).
 </br>
